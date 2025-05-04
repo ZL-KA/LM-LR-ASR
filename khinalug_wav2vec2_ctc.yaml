@@ -1,0 +1,31 @@
+trainer:
+  group_by_length: True
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 1
+  evaluation_strategy: 'steps'
+  num_train_epochs: 100 # Was 1000, leading to too slow weight decay
+  fp16: True
+  gradient_checkpointing: True
+  save_steps: 200
+  eval_steps: 200
+  logging_steps: 100
+  learning_rate: 5e-5
+  weight_decay: 0.005
+  # warmup_steps: 100
+  num_warmup_steps: 100
+  save_total_limit: 5
+  load_best_model_at_end: True
+  # metric_for_best_model: 'loss'
+  greater_is_better: False
+  seed: 42
+  data_seed: SEED
+  label_smoothing_factor: 0.0
+  # lr_scheduler_type: 'inverse_sqrt'
+  lr_scheduler_type: 'linear'
+  early_stopping_patience: 15
+preprocessing:
+  max_train_audio_length: 15
+  min_train_audio_length: 1
+  min_text_length: 5
+
